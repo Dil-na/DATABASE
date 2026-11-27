@@ -1,4 +1,4 @@
-import csv
+# import csv
 import sqlite3
 
 DATABASE = "company.db"
@@ -225,16 +225,16 @@ def top_earners(n):
 	_show_rows(cursor.fetchall())
 
 
-def export_to_csv(filename):
-	try:
-		cursor.execute("SELECT " + DISPLAY_COLUMNS + " FROM employees WHERE is_active = ? ORDER BY id", (1,))
-		with open(filename, "w", newline="", encoding="utf-8") as csv_file:
-			writer = csv.writer(csv_file)
-			writer.writerow(("id", "name", "email", "department", "salary", "join_date"))
-			writer.writerows(cursor.fetchall())
-		print("Employees exported successfully.")
-	except (OSError, TypeError) as error:
-		print("Could not export employees: " + str(error))
+# def export_to_csv(filename):
+# 	try:
+# 		cursor.execute("SELECT " + DISPLAY_COLUMNS + " FROM employees WHERE is_active = ? ORDER BY id", (1,))
+# 		with open(filename, "w", newline="", encoding="utf-8") as csv_file:
+# 			writer = csv.writer(csv_file)
+# 			writer.writerow(("id", "name", "email", "department", "salary", "join_date"))
+# 			writer.writerows(cursor.fetchall())
+# 		print("Employees exported successfully.")
+# 	except (OSError, TypeError) as error:
+# 		print("Could not export employees: " + str(error))
 
 
 def _number(prompt):
@@ -279,8 +279,8 @@ def main():
 				show_summary()
 			elif choice == "12":
 				top_earners(input("Number of employees: "))
-			elif choice == "13":
-				export_to_csv(input("CSV filename: "))
+			# elif choice == "13":
+			# 	export_to_csv(input("CSV filename: "))
 			elif choice == "15":
 				get_employee(input("Employee id: "))
 			elif choice == "16":
